@@ -1,7 +1,7 @@
 ---
 title: "Exercise 1"
 author: "Juliana Vieira"
-date: "2023-12-05"
+date: "2023-12-07"
 output: md_document
 ---
 
@@ -16,9 +16,9 @@ If you use any resources for helping you remove stopwords, or some other resourc
 -   Load necessary packages
 
 ```{r}
-suppressPackageStartupMessages(library(janeaustenr))
-suppressPackageStartupMessages(library(tidyverse))
-suppressPackageStartupMessages(library(tidytext))
+suppressWarnings(suppressPackageStartupMessages(library(janeaustenr)))
+suppressWarnings(suppressPackageStartupMessages(library(tidyverse)))
+suppressWarnings(suppressPackageStartupMessages(library(tidytext)))
 
 ```
 
@@ -74,9 +74,10 @@ print(top_25_words)
 -   Create a plot with the most common words
 
 ```{r}
-ggplot(top_25_words, aes(x = reorder(Word, Frequency), y = Frequency)) +
+ggplot(top_25_words, aes(x = reorder(Word, -Frequency), y = Frequency)) +
   geom_bar(stat = "identity", fill = "mediumpurple4") +
   labs(title = "Top 25 Most Common Words", x = "Words", y = "Word Frequency") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1.1))
+  theme(axis.text.x = element_text(angle = 90, hjust = 1.1))+
+  geom_text(aes(label = Frequency), vjust = -0.5, size = 3)
 
 ```

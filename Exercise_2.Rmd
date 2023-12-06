@@ -1,0 +1,113 @@
+---
+title: "Exercise 2"
+author: "Juliana Vieira"
+date: "2023-12-07"
+output: md_document
+---
+
+# Strings and functional programming in R
+
+#### **Exercise 2 (37.5 points)**
+
+Make a function that converts words to your own version of Pig Latin.
+
+The specific input and output that you decide upon is up to you. Don't forget to implement good function-making hygiene: we'll be looking for (unrendered) roxygen2-style documentation (being sure to describe your Pig Latin conversion), examples of applying the function, 3 non-redundant tests, appropriate use of arguments, and appropriate amount of checking for proper input.
+
+**Your Pig Latin should incorporate two components:**
+
+**Rearrangement component**
+
+The default Pig Latin rearrangement rule, as per Wikipedia, moves beginning letters to the end:
+
+> 1.  For words that begin with consonant sounds, all letters before the initial vowel are placed at the end of the word sequence.
+>
+> 2.  When words begin with consonant clusters (multiple consonants that form one sound), the whole sound is added to the end
+>
+> 3.  For words beginning with vowel sounds, one removes the initial vowel(s) along with the first consonant or consonant cluster. Modify this somehow. Maybe you move letters from the end to the beginning, or you change the rules altogether, keeping a similar level of complexity.
+
+**Addition component**
+
+The default Pig Latin addition rule is to add "ay" to the end of the word, after rearranging the letters of the word. You should choose some other addition rule.
+
+-   Define my own version of Pig Latin
+
+> A version of Pig Latin = Pig Yatin 1. Add the first latter to the end of the word 2. Change vowels adding "y" before them
+
+-   Create the function
+
+```{r}
+
+#' Convert words to Pig Yatin (A custom version of Pig Latin)
+#'
+#' This function takes a word as input and converts it to Pig Yatin by rearranging
+#' the letters based on specific rules and adding a unique addition component.
+#'
+#' @param word A character string representing the word to be converted.
+#'
+#' @return A character string representing the Pig Yatin version of the input word.
+#'
+#' @examples
+#' pig_yatin("hello") # "eylloyh"
+#' pig_yatin("apple") # "yppleya"
+#' pig_yatin("gps")   # "psg"
+#'
+#'
+#' @export
+
+Pig_Yatin <- function(word) {
+  
+  # check if the input is a character
+  if (is.character(word)) {
+    word <- word[1]  # Extract the single string from the list
+  }
+  else {
+    stop("Input must be a string or a list of strings.")
+  }
+
+  
+  # Define vowels list 
+  vowels <- c("a", "e", "i", "o", "u")
+  
+  # Initialize new_string with the original word
+  new_word <- word 
+  
+  # **Addition component** -> add "y" after vowels
+  for (vowel in vowels) {
+    new_word <- str_replace_all(new_word, paste0("(?i)", vowel), paste0(vowel, "y"))
+  }
+  
+  # **Rearrangement component** -> move first letter to the end of the word
+  
+  if (substr(word[1], 1, 1) %in% vowels) {
+    moving_letter <- str_sub(word, 1, 1) # Extract the first letter
+    rest_word <- str_sub(new_word, 3) # substring starting from the third character
+  } else {
+    moving_letter <- str_sub(word1, str_length(word1)) # Extract the last letter
+    rest_word <- str_sub(new_word, 2)  # substring starting from the second character
+  }
+
+  #Build the new word
+  yatin_word <- paste0(rest_word, moving_letter)
+  
+return(yatin_word)
+}
+
+
+```
+
+```{r}
+word1 = " "
+Pig_Yatin(word1)
+```
+
+-   Examples of applying the function
+
+```{r}
+
+```
+
+-   3 non-redundant tests
+
+```{r}
+
+```

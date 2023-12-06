@@ -19,19 +19,9 @@ styles, just make sure you name the source and link to it.
 
 <!-- -->
 
-    suppressPackageStartupMessages(library(janeaustenr))
-
-    ## Warning: package 'janeaustenr' was built under R version 4.3.2
-
-    suppressPackageStartupMessages(library(tidyverse))
-
-    ## Warning: package 'readr' was built under R version 4.3.2
-
-    ## Warning: package 'dplyr' was built under R version 4.3.2
-
-    suppressPackageStartupMessages(library(tidytext))
-
-    ## Warning: package 'tidytext' was built under R version 4.3.2
+    suppressWarnings(suppressPackageStartupMessages(library(janeaustenr)))
+    suppressWarnings(suppressPackageStartupMessages(library(tidyverse)))
+    suppressWarnings(suppressPackageStartupMessages(library(tidytext)))
 
 -   Select the book/data to use in this task
 
@@ -108,9 +98,10 @@ styles, just make sure you name the source and link to it.
 
 <!-- -->
 
-    ggplot(top_25_words, aes(x = reorder(Word, Frequency), y = Frequency)) +
+    ggplot(top_25_words, aes(x = reorder(Word, -Frequency), y = Frequency)) +
       geom_bar(stat = "identity", fill = "mediumpurple4") +
       labs(title = "Top 25 Most Common Words", x = "Words", y = "Word Frequency") +
-      theme(axis.text.x = element_text(angle = 90, hjust = 1.1))
+      theme(axis.text.x = element_text(angle = 90, hjust = 1.1))+
+      geom_text(aes(label = Frequency), vjust = -0.5, size = 3)
 
 ![](Exercise_1_files/figure-markdown_strict/unnamed-chunk-6-1.png)
