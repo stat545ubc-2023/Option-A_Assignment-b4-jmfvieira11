@@ -19,9 +19,9 @@ Topic: Strings and functional programming in R.
 
 -   `README.md`: The document you are currently reading, which provides essential context to the repository.
 -   `Most common words - Exercise_1.rmd` : This file is addressing the Exercise 1 task. The book "Pride & Prejudice" (Jane Austen) 25 most common words.
--   `Pig Yatin (custom pig latin) - Exercise_2.rmd` : This file is addressing the Exercise 2 task. Contains the function `Pig_Yatin()` that converts words to my own version of Pig Latin.
--   `Most common words - Exercise_1.md` & `Pig Yatin (custom pig latin) - Exercise_2.md`: A "knitted" version of the "Most common words - Exercise_1.rmd" and "Pig Yatin (custom pig latin) - Exercise_2.rmd" files described above for Github visualization.
--   `Most common words folder`: It contains the plot image from "Most common words - Exercise_1""
+-   `Pig-Yatin_custom-pig-latin_Exercise_2.rmd` : This file is addressing the Exercise 2 task. Contains the function `Pig_Yatin()` that converts words to my own version of Pig Latin.
+-   `Most common words - Exercise_1.md` & `Pig-Yatin_custom-pig-latin_Exercise_2.md`: A "knitted" version of the "Most common words - Exercise_1.rmd" and "Pig Yatin (custom pig latin) - Exercise_2.rmd" files described above for Github visualization.
+-   `Most common words - Exercise_1_files`: It contains the plot image from "Most common words - Exercise_1""
 -   `.gitignore`: It is used by git to avoid tracking superfluous files.
 
 > **Usage**
