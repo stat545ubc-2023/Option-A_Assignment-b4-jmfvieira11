@@ -1,0 +1,82 @@
+---
+title: "Exercise 1"
+author: "Juliana Vieira"
+date: "2023-12-05"
+output: md_document
+---
+
+# Strings and functional programming in R
+
+#### **Exercise 1 (37.5 points)**
+
+Take a Jane Austen book contained in the janeaustenr package, or another book from some other source, such as one of the many freely available books from Project Gutenberg (be sure to indicate where you got the book from). Make a plot of the most common words in the book, removing "stop words" of your choosing (words like "the", "a", etc.) or stopwords from a pre-defined source, like the stopwords package or tidytext::stop_words.
+
+If you use any resources for helping you remove stopwords, or some other resource besides the janeaustenr R package for accessing your book, please indicate the source. We aren't requiring any formal citation styles, just make sure you name the source and link to it.
+
+-   Load necessary packages
+
+```{r}
+suppressPackageStartupMessages(library(janeaustenr))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidytext))
+
+```
+
+-   Select the book/data to use in this task
+
+```{r}
+# Selecting Pride&Prejudice book to use in this task
+PridePrejudice <- janeaustenr::prideprejudice
+```
+
+-   Clean the text and remove all non-alphabetic characters
+
+```{r}
+words_text <- PridePrejudice %>%
+  str_to_lower() %>%
+  str_replace_all("[^[:alpha:]]", " ") %>% # "^[[:alpha:]]" matches any alphabetic character, and "^" negate it => Thus remove all non-alphabetic characters 
+  str_split("\\s+") %>%  # "\\s+" = extract words / matches one or more white space characters
+  unlist() %>%
+  discard(str_detect, "^$") #  discard elements that are empty strings
+
+
+
+```
+
+-   Filter out stop words
+
+```{r}
+
+# Define stop words list to filter out using a pre-defined source (tidytext::stop_words)
+stop_words <- tidytext::stop_words
+stop_words_list <- stop_words %>%
+  select(word) %>%
+  pull()
+# Remove stop words
+filtered_words <- words_text[!words_text %in% stop_words_list]
+
+```
+
+-   Organize data frame
+
+```{r}
+# Create a data frame with word frequencies
+word_frequency <- table(filtered_words)
+# Convert to data frame for plotting with ggplot2
+word_freq_df <- data.frame(Word = names(word_frequency), Frequency = as.numeric(word_frequency))
+
+top_25_words <- word_freq_df %>%  #arrange words by most frequent
+  arrange(desc(Frequency)) %>%
+  head(25) # select top 25
+print(top_25_words)
+```
+
+-   Create a plot with the most common words
+
+```{r}
+ggplot(top_25_words, aes(x = reorder(Word, Frequency), y = Frequency)) +
+  geom_bar(stat = "identity", fill = "mediumpurple4") +
+  labs(title = "Top 25 Most Common Words", x = "Words", y = "Word Frequency") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1.1))
+
+```
