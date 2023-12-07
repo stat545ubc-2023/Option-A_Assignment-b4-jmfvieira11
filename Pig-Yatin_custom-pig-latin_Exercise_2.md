@@ -140,10 +140,9 @@ Example using a word starting with a vowel
 
 Example using a word starting with a consonant
 
-    word2 <- "regard"
-    Pig_Yatin("hello")
+    Pig_Yatin("regard")
 
-    ## [1] "eylloyhh"
+    ## [1] "eygayrdrr"
 
 Example using a character vector of words
 
@@ -170,30 +169,30 @@ Example using a character vector of words
       expect_equal(Pig_Yatin(word_list), c("ayrcc","iyrplayneya", "rayiyntt","uysbb"))
       })
 
-    ## Test passed 🥳
+    ## Test passed 😸
 
     test_that("Error handling for missing or empty input", {
       expect_error(Pig_Yatin(), "Input is missing or empty.")
     })
 
-    ## Test passed 🎊
+    ## Test passed 🥳
 
     test_that("Error handling for non-character input", {
       expect_error(Pig_Yatin(981), "Input must be a string or a list of strings.")
       expect_error(Pig_Yatin(c(1,2,3)), "Input must be a string or a list of strings.")
     })
 
-    ## Test passed 🥳
+    ## Test passed 🎊
 
     test_that("Error handling for empty string input", {
       expect_error(Pig_Yatin(""), "Input cannot be an empty string.")
     })
 
-    ## Test passed 😸
+    ## Test passed 🎊
 
     test_that("mixed list input", {
       expect_equal(Pig_Yatin(c("car", 123, "apple")), c("ayrcc","2311", "ppleya"))
       expect_equal(Pig_Yatin(c(25, 123, "apple")), c("522","2311", "ppleya"))
       })
 
-    ## Test passed 😸
+    ## Test passed 🥇

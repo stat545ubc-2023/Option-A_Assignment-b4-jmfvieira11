@@ -133,8 +133,7 @@ Pig_Yatin(word1)
 Example using a word starting with a consonant
 
 ```{r}
-word2 <- "regard"
-Pig_Yatin("hello")
+Pig_Yatin("regard")
 ```
 
 Example using a character vector of words
