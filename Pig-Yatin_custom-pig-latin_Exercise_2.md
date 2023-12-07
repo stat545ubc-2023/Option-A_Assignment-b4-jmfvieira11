@@ -11,9 +11,9 @@ Pig Latin conversion), examples of applying the function, 3
 non-redundant tests, appropriate use of arguments, and appropriate
 amount of checking for proper input.
 
-**Your Pig Latin should incorporate two components:**
+Your Pig Latin should incorporate two components:
 
-**Rearrangement component**
+*Rearrangement component*
 
 The default Pig Latin rearrangement rule, as per Wikipedia, moves
 beginning letters to the end:
@@ -30,13 +30,15 @@ beginning letters to the end:
 >     beginning, or you change the rules altogether, keeping a similar
 >     level of complexity.
 
-**Addition component**
+*Addition component*
 
 The default Pig Latin addition rule is to add “ay” to the end of the
 word, after rearranging the letters of the word. You should choose some
 other addition rule.
 
--   Define my own version of Pig Latin
+#### **Creating Pig\_Yatin()**
+
+-   Define rules for my own version of Pig Latin
 
 > A version of Pig Latin = Pig Yatin
 >
@@ -168,30 +170,30 @@ Example using a character vector of words
       expect_equal(Pig_Yatin(word_list), c("ayrcc","iyrplayneya", "rayiyntt","uysbb"))
       })
 
-    ## Test passed 🌈
+    ## Test passed 🥳
 
     test_that("Error handling for missing or empty input", {
       expect_error(Pig_Yatin(), "Input is missing or empty.")
     })
 
-    ## Test passed 🎉
+    ## Test passed 🎊
 
     test_that("Error handling for non-character input", {
       expect_error(Pig_Yatin(981), "Input must be a string or a list of strings.")
       expect_error(Pig_Yatin(c(1,2,3)), "Input must be a string or a list of strings.")
     })
 
-    ## Test passed 🎊
+    ## Test passed 🥳
 
     test_that("Error handling for empty string input", {
       expect_error(Pig_Yatin(""), "Input cannot be an empty string.")
     })
 
-    ## Test passed 🌈
+    ## Test passed 😸
 
     test_that("mixed list input", {
       expect_equal(Pig_Yatin(c("car", 123, "apple")), c("ayrcc","2311", "ppleya"))
       expect_equal(Pig_Yatin(c(25, 123, "apple")), c("522","2311", "ppleya"))
       })
 
-    ## Test passed 🎊
+    ## Test passed 😸
